@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     textAlign: 'center',
-    color: '#a9a9a9',
+    color: '#A9A9A9',
   },
   linkContainer: {
     flex: 1,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   fullLinkText: {
     textAlign: 'center',
     fontSize: 15,
-    color: '#a9a9a9',
+    color: '#A9A9A9',
   },
   link: {
     textDecorationLine: 'underline',

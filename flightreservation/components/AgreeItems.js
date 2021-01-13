@@ -19,7 +19,7 @@ const AgreeItems = () => {
         <Text style={styles.label}>
           I agree to the <Text style={styles.link}>Terms</Text> and{' '}
           <Text style={styles.link}>Privacy Policy</Text>{' '}
-          <Text style={styles.required}>*</Text>
+          <Text style={styles.required}> *</Text>
         </Text>
       </View>
       <View style={styles.checkboxContainer}>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   },
   link: {
     textDecorationLine: 'underline',
+    color: '#A9A9A9',
   },
   required: {
     color: 'red',
