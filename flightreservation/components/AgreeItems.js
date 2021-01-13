@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 
+import SignUpButton from './SignUpButton';
+
 import Checkbox from '@react-native-community/checkbox';
 import {Text, View, StyleSheet} from 'react-native';
 
 const AgreeItems = () => {
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
+
   return (
     <View>
       <View style={styles.checkboxContainer}>
@@ -31,6 +34,17 @@ const AgreeItems = () => {
         />
         <Text style={styles.label}>Subscribe for select product updates.</Text>
       </View>
+      <View style={styles.containerSpacing}>
+        <SignUpButton title="Sign Up" agree={toggleCheckBox1} />
+        <Text style={styles.buttonDivider}>or</Text>
+        <View>
+          <SignUpButton
+            title="Sign Up with Google"
+            agree={toggleCheckBox1}
+            image={true}
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -52,6 +66,15 @@ const styles = StyleSheet.create({
   },
   required: {
     color: 'red',
+  },
+  containerSpacing: {
+    marginTop: 30,
+  },
+  buttonDivider: {
+    marginTop: 20,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#A9A9A9',
   },
 });
 

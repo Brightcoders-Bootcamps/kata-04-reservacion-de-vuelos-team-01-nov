@@ -4,7 +4,6 @@ import UserInfo from './UserInfo';
 import AgreeItems from './AgreeItems';
 
 import {View, Text, StyleSheet} from 'react-native';
-import SignUpButton from './SignUpButton';
 
 const SignUp = () => {
   return (
@@ -16,11 +15,6 @@ const SignUp = () => {
         </View>
         <View style={styles.containerSpacing}>
           <AgreeItems />
-        </View>
-        <View style={styles.containerSpacing}>
-          <SignUpButton title="Sign Up" />
-          <Text style={styles.buttonDivider}>or</Text>
-          <SignUpButton title="Sign Up with Google" />
         </View>
       </View>
       <View style={styles.linkContainer}>
@@ -44,12 +38,6 @@ const styles = StyleSheet.create({
   },
   containerSpacing: {
     marginTop: 30,
-  },
-  buttonDivider: {
-    marginTop: 20,
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#A9A9A9',
   },
   linkContainer: {
     flex: 1,
