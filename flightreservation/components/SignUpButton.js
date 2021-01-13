@@ -1,12 +1,11 @@
 import React from 'react';
 
-import {View, Button, Text} from 'react-native';
+import {View, Button} from 'react-native';
 
 const SignUpButton = ({title}) => {
   return (
     <View>
-      <Text></Text>
-      <Button title={title}></Button>
+      <Button title={title} color="#B6B7BA"></Button>
     </View>
   );
 };
