@@ -46,19 +46,20 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonDivider: {
-    marginTop: 25,
-    marginBottom: 25,
+    marginTop: 20,
+    marginBottom: 20,
     textAlign: 'center',
+    color: '#a9a9a9',
   },
   linkContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   fullLinkText: {
     textAlign: 'center',
     fontSize: 15,
-    color: '#B6B7BA',
+    color: '#a9a9a9',
   },
   link: {
     textDecorationLine: 'underline',

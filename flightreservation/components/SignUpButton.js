@@ -5,7 +5,7 @@ import {View, Button} from 'react-native';
 const SignUpButton = ({title}) => {
   return (
     <View>
-      <Button title={title} color="#B6B7BA"></Button>
+      <Button title={title} color="#A9A9A9"></Button>
     </View>
   );
 };
