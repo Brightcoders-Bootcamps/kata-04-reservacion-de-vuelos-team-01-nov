@@ -1,24 +1,24 @@
 import React,{useState} from 'react';
-import{View,StyleSheet,Text,TextInput,TouchableOpacity,Image} from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import{View,StyleSheet,Text,TouchableOpacity,Image} from 'react-native';
 
 const BookingWill = ({route,navigation})=>
-{
-    const[textLocationWill, setTextLocationWill] = useState('');
-
-    const{origin} = route.params
+{        
+    const [date, setDate] = useState(new Date())
+    const{origin, destiny} = route.params
+    
 
     return(
-        <View style={styles.mainContainer}>
-            
-            <TouchableOpacity onPress={()=>{navigation.navigate('BookingNow')}}>
+        <View style={styles.mainContainer}> 
+            <TouchableOpacity onPress={()=>{navigation.navigate('BookingWill')}}>
                 <Image
                     style={{width:30,height:30,marginTop:30, marginLeft:20}}
                     source={require('../images/back.png')}        
                 />
-            </TouchableOpacity> 
-
+            </TouchableOpacity>           
+        
             <View style={styles.detailsContainer}>
-
+            
                 <View style={styles.originContainer}>
                     <Text style={styles.headerText}>ORIGIN</Text>
                     <Text>{origin}</Text>
@@ -32,21 +32,28 @@ const BookingWill = ({route,navigation})=>
 
                 <View style={styles.destinyContainer}>                    
                     <Text style={styles.headerText}>DESTINY</Text>
-                    <Text></Text>                    
+                    <Text>{destiny}</Text>                    
                 </View>
 
             </View>
 
             <View style={styles.inputLocationContainer}>
-                <Text style={styles.questionText}>Where will you be flying to?</Text>
-                <TextInput onChangeText={(text)=>{setTextLocationWill(text)}} placeholder="Type Location"></TextInput>   
+                <Text style={styles.questionText}>Select Date</Text>                    
+                <DatePicker 
+                    style={styles.customizableCalendar}                   
+                    androidVariant="nativeAndroid"
+                    date={date}     
+                    mode={"date"} 
+                    onDateChange={setDate}              
+                />               
+
             </View>
             
 
             <View style={styles.buttonNextContainer}>
-                <TouchableOpacity  disabled={textLocationWill === '' ? true:false } style={textLocationWill === '' ? styles.buttonDisabled:styles.button} onPress={()=>{navigation.navigate('BookingDate',{origin:origin,destiny:textLocationWill})}}>
+                <TouchableOpacity style={styles.button} onPress={()=>{console.log( date.toDateString())}}>
                     <Text style={styles.buttonText}>Next</Text>
-                </TouchableOpacity> 
+                </TouchableOpacity>                 
             </View>    
 
         </View>
@@ -75,7 +82,12 @@ const styles = StyleSheet.create({
         flex:1,                
         paddingTop:80,
         paddingLeft:30,
-        paddingRight:30,        
+        paddingRight:30,
+                
+    },
+    customizableCalendar:
+    {        
+        marginTop:20,                          
     },
     questionText:
     {
@@ -87,7 +99,7 @@ const styles = StyleSheet.create({
         flex:1, 
         flexDirection:'row',      
         justifyContent:'center', 
-        paddingTop:40,            
+        paddingTop:150,            
     },
     button:
     {

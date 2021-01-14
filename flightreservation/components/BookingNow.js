@@ -3,19 +3,19 @@ import{View,StyleSheet,Text,TextInput,TouchableOpacity,} from 'react-native';
 
 const BookingNow = ({navigation})=>
 {
-    const[textLocationDestiny, setTextLocationDestiny] = useState('');
+    const[textLocationNow, setTextLocationNow] = useState('');
 
     return(
         <View style={styles.mainContainer}>
 
             <View style={styles.inputLocationContainer}>
                 <Text style={styles.questionText}>Where are you now?</Text>
-                <TextInput value={textLocationDestiny} onChangeText={(text)=>{setTextLocationDestiny(text)}} placeholder="Type Location"></TextInput>   
+                <TextInput onChangeText={(text)=>{setTextLocationNow(text)}} placeholder="Type Location"></TextInput>   
             </View>
             
 
             <View style={styles.buttonNextContainer}>
-                <TouchableOpacity  disabled={textLocationDestiny === '' ? true:false } style={textLocationDestiny === '' ? styles.buttonDisabled:styles.button} onPress={()=>{navigation.navigate('BookingWill',{origin:textLocationDestiny})}}>
+                <TouchableOpacity  disabled={textLocationNow === '' ? true:false } style={textLocationNow === '' ? styles.buttonDisabled:styles.button} onPress={()=>{navigation.navigate('BookingWill',{origin:textLocationNow})}}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity> 
             </View>    
