@@ -1,16 +1,13 @@
 import React,{useState} from 'react';
-import DatePicker from 'react-native-date-picker';
 import{View,StyleSheet,Text,TouchableOpacity,Image} from 'react-native';
 
-const BookingWill = ({route,navigation})=>
-{        
-    const [date, setDate] = useState(new Date())
-    const{origin, destiny} = route.params
-    
+const BookingRequest = ({route,navigation})=>
+{
+    const{origin, destiny, date, passengers} = route.params;      
 
     return(
         <View style={styles.mainContainer}> 
-            <TouchableOpacity onPress={()=>{navigation.navigate('BookingWill')}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('BookingPassengers')}}>
                 <Image
                     style={{width:30,height:30,marginTop:30, marginLeft:20}}
                     source={require('../images/back.png')}        
@@ -30,32 +27,30 @@ const BookingWill = ({route,navigation})=>
                     />
                 </View>
 
-                <View>                    
+                <View style={styles.destinyContainer}>                    
                     <Text style={styles.headerText}>DESTINY</Text>
                     <Text style={styles.destinyText}>{destiny}</Text>                    
-                </View>
+                </View>                                  
 
             </View>
 
-            <View style={styles.inputLocationContainer}>
-                <Text style={styles.questionText}>Select Date</Text>                    
-                <DatePicker 
-                    style={styles.customizableCalendar}                   
-                    androidVariant="nativeAndroid"
-                    date={date}     
-                    mode={"date"} 
-                    onDateChange={setDate}              
-                />               
+            <View style={styles.datePassengers}>
+                <Text>{date}</Text>
+                <Text>{passengers} Passengers</Text>
+            </View>
 
+            <View style={styles.inputLocationContainer}>
+                <Text style={styles.questionText}>Your request was received!!</Text>                                                                             
             </View>
             
 
             <View style={styles.buttonNextContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('BookingPassengers',{origin:origin,destiny:destiny,date:date.toDateString()})}}>
-                    <Text style={styles.buttonText}>Next</Text>
+                <TouchableOpacity style={styles.button} onPress={()=>{}}>
+                    <Text style={styles.buttonText}>Finish</Text>
                 </TouchableOpacity>                 
-            </View>                
-        </View>
+            </View>    
+
+        </View>                
     );
 }
 
@@ -69,13 +64,14 @@ const styles = StyleSheet.create({
     {
         flexDirection:'row',
         justifyContent:'space-around',                        
-        marginTop:20                
-    },
+        marginTop:20,                       
+
+    },   
     headerText:
     {
         fontSize:25,
         fontWeight:'bold',        
-    },   
+    },  
     originText:
     {
         color:'gray'
@@ -84,13 +80,31 @@ const styles = StyleSheet.create({
     {
         color:'gray'
     },
+    counterContainer:
+    {
+        flexDirection:'row',
+        justifyContent:'space-around',         
+        marginTop:20       
+    },
+    textCounter:
+    {        
+        paddingTop:20,
+        fontSize:40
+    },
     inputLocationContainer:
     {
         flex:1,                
-        paddingTop:80,
+        paddingTop:40,
         paddingLeft:30,
-        paddingRight:30,
-                
+        paddingRight:30,                        
+    },
+    datePassengers:
+    {
+        flexDirection:'row',
+        justifyContent:'space-between',         
+        paddingTop:10,
+        paddingLeft:30,
+        paddingRight:45
     },
     customizableCalendar:
     {        
@@ -131,4 +145,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BookingWill;
+export default BookingRequest;

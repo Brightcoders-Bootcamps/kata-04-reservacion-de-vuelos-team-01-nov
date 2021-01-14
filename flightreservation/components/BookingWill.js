@@ -21,12 +21,12 @@ const BookingWill = ({route,navigation})=>
 
                 <View style={styles.originContainer}>
                     <Text style={styles.headerText}>ORIGIN</Text>
-                    <Text>{origin}</Text>
+                    <Text style={styles.originText}>{origin}</Text>
                 </View>
 
                 <View>
                     <Image style={{width:20, height:20,marginTop:15}}
-                        source={require('../images/airplane.png')}
+                        source={require('../images/avion.png')}
                     />
                 </View>
 
@@ -69,7 +69,11 @@ const styles = StyleSheet.create({
     {
         fontSize:25,
         fontWeight:'bold',        
-    },   
+    }, 
+    originText:
+    {
+        color:'gray'
+    },     
     inputLocationContainer:
     {
         flex:1,                

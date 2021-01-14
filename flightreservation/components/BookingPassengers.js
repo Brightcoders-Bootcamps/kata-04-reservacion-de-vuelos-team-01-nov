@@ -1,16 +1,15 @@
 import React,{useState} from 'react';
-import DatePicker from 'react-native-date-picker';
 import{View,StyleSheet,Text,TouchableOpacity,Image} from 'react-native';
 
-const BookingWill = ({route,navigation})=>
-{        
-    const [date, setDate] = useState(new Date())
-    const{origin, destiny} = route.params
-    
+const BookingPassengers = ({route,navigation})=>
+{
+    const{origin, destiny, date} = route.params;
+
+    const[count, setCount] = useState(1);    
 
     return(
         <View style={styles.mainContainer}> 
-            <TouchableOpacity onPress={()=>{navigation.navigate('BookingWill')}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('BookingDate')}}>
                 <Image
                     style={{width:30,height:30,marginTop:30, marginLeft:20}}
                     source={require('../images/back.png')}        
@@ -33,29 +32,43 @@ const BookingWill = ({route,navigation})=>
                 <View>                    
                     <Text style={styles.headerText}>DESTINY</Text>
                     <Text style={styles.destinyText}>{destiny}</Text>                    
-                </View>
+                </View>                                  
 
             </View>
 
-            <View style={styles.inputLocationContainer}>
-                <Text style={styles.questionText}>Select Date</Text>                    
-                <DatePicker 
-                    style={styles.customizableCalendar}                   
-                    androidVariant="nativeAndroid"
-                    date={date}     
-                    mode={"date"} 
-                    onDateChange={setDate}              
-                />               
+            <View style={styles.datePassengers}>
+                <Text>{date}</Text>
+            </View>
 
+            <View style={styles.inputLocationContainer}>
+                <Text style={styles.questionText}>How Many Passengers?</Text> 
+                <View style={styles.counterContainer}>
+                    <TouchableOpacity onPress={()=>{setCount(count-1);}}>
+                        <Image
+                        style={{width:30,height:30,marginTop:30, marginLeft:20}}
+                        source={require('../images/back.png')}        
+                        />                        
+                    </TouchableOpacity>
+
+                    <Text style={styles.textCounter}>{count}</Text>                                                            
+
+                    <TouchableOpacity onPress={()=>{setCount(count+1);}}>
+                        <Image
+                        style={{width:30,height:30,marginTop:30, marginLeft:20}}
+                        source={require('../images/back1.png')}        
+                        />
+                    </TouchableOpacity>                                        
+                </View>                                                            
             </View>
             
 
             <View style={styles.buttonNextContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('BookingPassengers',{origin:origin,destiny:destiny,date:date.toDateString()})}}>
+                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('BookingRequest',{origin:origin,destiny:destiny,date:date,passengers:count})}}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>                 
-            </View>                
-        </View>
+            </View>    
+
+        </View>                
     );
 }
 
@@ -69,13 +82,14 @@ const styles = StyleSheet.create({
     {
         flexDirection:'row',
         justifyContent:'space-around',                        
-        marginTop:20                
-    },
+        marginTop:20,                       
+
+    },   
     headerText:
     {
         fontSize:25,
         fontWeight:'bold',        
-    },   
+    },  
     originText:
     {
         color:'gray'
@@ -84,18 +98,29 @@ const styles = StyleSheet.create({
     {
         color:'gray'
     },
+    counterContainer:
+    {
+        flexDirection:'row',
+        justifyContent:'space-around',         
+        marginTop:20       
+    },
+    textCounter:
+    {        
+        paddingTop:20,
+        fontSize:40
+    },
     inputLocationContainer:
     {
         flex:1,                
-        paddingTop:80,
+        paddingTop:40,
         paddingLeft:30,
-        paddingRight:30,
-                
+        paddingRight:30,                        
     },
-    customizableCalendar:
-    {        
-        marginTop:20,                          
-    },
+    datePassengers:
+    {
+        paddingLeft:30, 
+        paddingTop:10       
+    },    
     questionText:
     {
         fontWeight:'bold',
@@ -131,4 +156,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BookingWill;
+export default BookingPassengers;
