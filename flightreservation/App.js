@@ -1,18 +1,28 @@
 import React from 'react';
-import {View,StyleSheet,Text} from 'react-native';
+import {View,StyleSheet} from 'react-native';
+import FlightsView from "./components/FlightsView";
+import Login from './components/Login'
+import SignUp from './components/SignUp';
 import BookingNavigation from './components/BookingNavigation'
 
-const App = ()=>{
-  return (
-    <BookingNavigation></BookingNavigation>           
+const App = ()=>
+{
+  return(
+    <View style={styles.mainContainerApp}>
+      <Login></Login>
+      <SignUp></SignUp>
+      <FlightsView></FlightsView>
+    <BookingNavigation></BookingNavigation> 
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  mainContainer:
+  mainContainerApp:
   {
-    flex:1
+    flex:1,      
   }
 });
 
 export default App;
+
