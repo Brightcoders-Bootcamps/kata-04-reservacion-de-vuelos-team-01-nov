@@ -25,7 +25,7 @@ const Login = ({navigation})=>
 
 
         <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('FlightsView')}} >
                 <Text style={styles.buttonText}>
                     Log In
                 </Text>

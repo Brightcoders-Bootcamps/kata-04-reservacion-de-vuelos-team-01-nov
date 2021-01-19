@@ -13,15 +13,14 @@ const Stack = createStackNavigator();
 const BookingNavigation = ()=>
 {
   return (
-    <NavigationContainer>
+   
       <Stack.Navigator>
         <Stack.Screen name="BookingNow" options={{headerShown: false}} component={BookingNow}/> 
         <Stack.Screen name="BookingWill" options={{headerShown: false}} component={BookingWill}/>              
         <Stack.Screen name="BookingDate" options={{headerShown: false}} component={BookingDate}/>  
         <Stack.Screen name="BookingPassengers" options={{headerShown: false}} component={BookingPassengers}/>
         <Stack.Screen name="BookingRequest" options={{headerShown: false}} component={BookingRequest}/>             
-      </Stack.Navigator>
-    </NavigationContainer>              
+      </Stack.Navigator>             
   );
 };
 export default BookingNavigation;
