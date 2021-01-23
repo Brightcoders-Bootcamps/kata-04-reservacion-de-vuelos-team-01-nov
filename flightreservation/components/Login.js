@@ -2,9 +2,7 @@
 import React from 'react';
 import {View,Image,Text,TextInput,TouchableOpacity,StyleSheet} from 'react-native';
 
-
-
-const Login = ({navigation})=>
+const Login = ()=>
 {
   return(
     <View style={styles.mainContainer}>
@@ -18,14 +16,14 @@ const Login = ({navigation})=>
 
             <Text style={styles.labelText}>Password</Text>
             <TextInput secureTextEntry={true} style={styles.labelText}></TextInput>
-            <TouchableOpacity onPress={()=>{navigation.navigate('SignUp')}} >
-                <Text style={styles.labelSignUp}>Don´t you have an account? Sign Up Here</Text>
-            </TouchableOpacity>
+
+            <Text style={styles.labelSignUp}>Don´t you have an account? Sign Up Here
+            </Text>
         </View>
 
 
         <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('FlightsView')}} >
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>
                     Log In
                 </Text>

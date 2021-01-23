@@ -70,14 +70,12 @@ const styles = StyleSheet.create({
   containerSpacing: {
     marginTop: 30,
   },
-  /*
-    se omitio por problemas de resolucion
-    buttonDivider: {
+  buttonDivider: {
     marginTop: 20,
     marginBottom: 20,
     textAlign: 'center',
     color: '#A9A9A9',
-  },*/
+  },
 });
 
 export default AgreeItems;
