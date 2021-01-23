@@ -45,7 +45,7 @@ const BookingRequest = ({route,navigation})=>
             
 
             <View style={styles.buttonNextContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>{}}>
+                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('FlightsView')}}>
                     <Text style={styles.buttonText}>Finish</Text>
                 </TouchableOpacity>                 
             </View>    

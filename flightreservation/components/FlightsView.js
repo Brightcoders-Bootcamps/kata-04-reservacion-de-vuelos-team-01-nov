@@ -115,7 +115,7 @@ const Item = ({ item, onPress, style }) => (
   </View>
  );
 
-const FlightsView = () => {
+const FlightsView = ({navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -141,7 +141,7 @@ const FlightsView = () => {
             keyExtractor={(item) => item.id}
             extraData={selectedId}
           />                   
-      <TouchableOpacity style={styles.containerButtom}>
+      <TouchableOpacity style={styles.containerButtom} onPress={()=>{navigation.navigate('BookingNavigation')}}>
         <Image style={styles.plusbutton} source={require('../images/plus.png')}/>
       </TouchableOpacity>
         </View>    

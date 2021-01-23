@@ -1,11 +1,11 @@
 import React from 'react';
 
-import UserInfo from './UserInfo';
-import AgreeItems from './AgreeItems';
+import UserInfo from '../components/UserInfo';
+import AgreeItems from '../components/AgreeItems';
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
@@ -19,7 +19,10 @@ const SignUp = () => {
       </View>
       <View style={styles.linkContainer}>
         <Text style={styles.fullLinkText}>
-          Already have an account? <Text style={styles.link}>Log In</Text>
+          Already have an account? 
+          <TouchableOpacity onPress={()=>{navigation.navigate('LogIn')}}>
+            <Text style={styles.link}>Log In</Text>
+          </TouchableOpacity>
         </Text>
       </View>
     </>

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import{View,StyleSheet,Text,TextInput,TouchableOpacity,} from 'react-native';
+import{View,StyleSheet,Text,TextInput,TouchableOpacity, Image} from 'react-native';
 
 const BookingNow = ({navigation})=>
 {
@@ -8,12 +8,17 @@ const BookingNow = ({navigation})=>
     return(
         <View style={styles.mainContainer}>
 
+            <TouchableOpacity onPress={()=>{navigation.navigate('FlightsView')}}>
+                <Image
+                    style={{width:20,height:20,marginTop:30, marginLeft:20}}
+                    source={require('../images/back.png')}        
+                />
+            </TouchableOpacity> 
+
             <View style={styles.inputLocationContainer}>
                 <Text style={styles.questionText}>Where are you now?</Text>
                 <TextInput onChangeText={(text)=>{setTextLocationNow(text)}} placeholder="Type Location"></TextInput>   
             </View>
-            
-
             <View style={styles.buttonNextContainer}>
                 <TouchableOpacity  disabled={textLocationNow === '' ? true:false } style={textLocationNow === '' ? styles.buttonDisabled:styles.button} onPress={()=>{navigation.navigate('BookingWill',{origin:textLocationNow})}}>
                     <Text style={styles.buttonText}>Next</Text>
