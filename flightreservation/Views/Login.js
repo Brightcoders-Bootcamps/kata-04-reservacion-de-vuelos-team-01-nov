@@ -1,11 +1,44 @@
 
-import React from 'react';
-import {View,Image,Text,TextInput,TouchableOpacity,StyleSheet} from 'react-native';
+import React,{useState} from 'react';
+import {View,Image,Text,TextInput,TouchableOpacity,StyleSheet,Alert} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 
 const Login = ({navigation})=>
-{
+{  
+    
+  //-------------------------------------------------------------------------------//  
+  function logMailPassword(email,password)
+  {
+      auth().signInWithEmailAndPassword(email,password)
+      .then(() =>{
+          console.log("Logen succesfull whit", email)
+          navigation.navigate('FlightsView');
+      })
+      .catch(error =>
+        {                      
+            if(error.code === 'auth/user-not-found')
+            {
+                Alert.alert(
+                    'Email No Registered',
+                    'Check The Email Input',
+                    [                      
+                      { text: 'OK'}
+                    ],
+                    { cancelable: false }
+                  );                
+            }                
+        });       
+        console.error(error)           
+  }
+  //----------------------------------------------------------------------------------------//
+  
+
+  //State Hooks//
+  const [userEmail, setuserEmail] = useState('');
+  const [userPassword,setUserPassword] = useState('');
+
+
   return(
     <View style={styles.mainContainer}>
         <View style={styles.imageConatiner}>
@@ -14,18 +47,17 @@ const Login = ({navigation})=>
 
         <View style={styles.loginContainer}>
             <Text style={styles.labelText}>Email</Text>
-            <TextInput placeholder="domain@example.com" style={styles.input}></TextInput>
+            <TextInput onChangeText={(text)=>{setuserEmail(text)}} placeholder="domain@example.com" style={styles.input}></TextInput>
 
             <Text style={styles.labelText}>Password</Text>
-            <TextInput secureTextEntry={true} style={styles.labelText}></TextInput>
+            <TextInput onChangeText={(text)=>{setUserPassword(text)}} secureTextEntry={true} style={styles.labelText}></TextInput>
             <TouchableOpacity onPress={()=>{navigation.navigate('SignUp')}} >
                 <Text style={styles.labelSignUp}>Don´t you have an account? Sign Up Here</Text>
             </TouchableOpacity>
         </View>
 
-
         <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('FlightsView')}} >
+            <TouchableOpacity style={styles.button} onPress={()=>{logMailPassword(userEmail,userPassword)}} >
                 <Text style={styles.buttonText}>
                     Log In
                 </Text>
