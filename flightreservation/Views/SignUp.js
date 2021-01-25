@@ -5,7 +5,6 @@ import Checkbox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import auth from '@react-native-firebase/auth';
-import { color } from 'react-native-reanimated';
 
 const SignUp = ({ navigation }) => {
   const [firstNameInput, setFirstNameInput] = useState(false);
