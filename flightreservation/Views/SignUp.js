@@ -143,10 +143,10 @@ const SignUp = ({ navigation }) => {
       <View style={styles.linkContainer}>
         <Text style={styles.fullLinkText}>
           Already have an account?
-          <TouchableOpacity onPress={() => { navigation.navigate('LogIn') }}>
-            <Text style={styles.link}>Log In</Text>
-          </TouchableOpacity>
         </Text>
+        <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => { navigation.navigate('LogIn') }}>
+          <Text style={[styles.link]}>Log In</Text>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -168,13 +168,15 @@ const styles = StyleSheet.create({
   },
   linkContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
     marginBottom: 30,
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   fullLinkText: {
     textAlign: 'center',
     fontSize: 15,
     color: '#A9A9A9',
+    alignSelf: 'center',
   },
   link: {
     textDecorationLine: 'underline',
