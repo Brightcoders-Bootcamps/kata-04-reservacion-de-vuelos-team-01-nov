@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import auth from '@react-native-firebase/auth';
 
+import firestore from '@react-native-firebase/firestore';
+
 const SignUp = ({ navigation }) => {
   const [firstNameInput, setFirstNameInput] = useState(false);
   const [emailInput, setEmailInput] = useState(false);
@@ -99,6 +101,12 @@ const SignUp = ({ navigation }) => {
                     .createUserWithEmailAndPassword(emailInput, passwordInput)
                     .then(() => {
                       console.log('User account created & signed in!');
+                      console.log("ID usuario Logueado", auth().currentUser.uid)
+
+                      firestore().collection('usersData').doc(auth().currentUser.uid)
+                      .set({
+                            vuelos:[]                          
+                      })
                     })
                     .catch(error => {
                       if (error.code === 'auth/email-already-in-use') {
