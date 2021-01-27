@@ -1,9 +1,36 @@
 import React,{useState} from 'react';
 import{View,StyleSheet,Text,TouchableOpacity,Image} from 'react-native';
 
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
+
+
 const BookingRequest = ({route,navigation})=>
 {
-    const{origin, destiny, date, passengers} = route.params;      
+    const{origin, destiny, date, passengers} = route.params;  
+
+    const newData = {
+        origin:origin,
+        destiny:destiny,
+        date:date,
+        passengers:passengers
+    }
+    
+    function saveData(newData)
+    {
+        firestore().collection('usersData').doc(auth().currentUser.uid).get()
+        .then(documentSnapshot => {            
+            if (documentSnapshot.exists) {
+                var userData = documentSnapshot.data();
+                userData.vuelos.push(newData);                
+                
+                firestore().collection('usersData').doc(auth().currentUser.uid)
+                .set(userData);
+
+                navigation.navigate('FlightsView');
+            }
+        });        
+    }
 
     return(
         <View style={styles.mainContainer}> 
@@ -45,7 +72,7 @@ const BookingRequest = ({route,navigation})=>
             
 
             <View style={styles.buttonNextContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('FlightsView')}}>
+                <TouchableOpacity style={styles.button} onPress={()=>{saveData(newData)}}>
                     <Text style={styles.buttonText}>Finish</Text>
                 </TouchableOpacity>                 
             </View>    
