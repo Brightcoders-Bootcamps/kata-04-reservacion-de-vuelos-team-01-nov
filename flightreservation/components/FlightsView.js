@@ -1,91 +1,9 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
 
-const DATA = [
-  {
-    id: "1",
-    origin: "Serbia",
-    image: require('../images/avion.png'),
-    destiny: "Netherlands",
-    date:"September 3, 2021",
-    passengers:5
-  },
-  {
-    id: "2",
-    origin: "Serbia",
-    image: require('../images/avion.png'),
-    destiny: "Netherlands",
-    date:"September 3, 2021",
-    passengers:5
-  },
-  {
-    id: "3",
-    origin: "Serbia",
-    image: require('../images/avion.png'),
-    destiny: "Netherlands",
-    date:"September 3, 2021",
-    passengers:5
-  },
-  {
-  id: "4",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-{
-  id: "5",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-{
-  id: "6",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-{
-  id: "7",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-{
-  id: "8",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-{
-  id: "9",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-{
-  id: "10",
-  origin: "Serbia",
-  image: require('../images/avion.png'),
-  destiny: "Netherlands",
-  date:"September 3, 2021",
-  passengers:5
-},
-
-];
-
-const Item = ({ item, onPress, style }) => (
+const Item = ({ item }) => (
   <View style={styles.item}>
       <View style ={styles.itemTop}>
 
@@ -116,13 +34,21 @@ const Item = ({ item, onPress, style }) => (
  );
 
 const FlightsView = ({navigation}) => {
-  const [selectedId, setSelectedId] = useState(null);
 
+
+  const [userData, setuserData] = useState();   
+
+  firestore().collection('usersData').doc(auth().currentUser.uid).get()
+  .then(documentSnapshot => {            
+      if (documentSnapshot.exists) {
+          var DATA = documentSnapshot.data().vuelos;   
+          setuserData(DATA)                                                                       
+      }
+  }); 
+  
   const renderItem = ({ item }) => {
-   
-
     return (
-        <Item item={item} onPress={() => setSelectedId(item.id)}/>
+        <Item item={item}/>
     );
   };
 
@@ -136,21 +62,21 @@ const FlightsView = ({navigation}) => {
 
         <View style = {styles.containerFlights}>   
           <FlatList 
-            data={DATA}
+            data={userData}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            extraData={selectedId}
+            keyExtractor={(item) => item.id}            
           />                   
       <TouchableOpacity style={styles.containerButtom} onPress={()=>{navigation.navigate('BookingNavigation')}}>
         <Image style={styles.plusbutton} source={require('../images/plus.png')}/>
       </TouchableOpacity>
         </View>    
       </View>
-
-       
     </SafeAreaView>
   );
 };
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -231,4 +157,3 @@ const styles = StyleSheet.create({
 });
 
 export default FlightsView;
-

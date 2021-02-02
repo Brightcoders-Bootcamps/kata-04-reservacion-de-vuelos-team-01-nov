@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
 import Checkbox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/AntDesign';
-
 import auth from '@react-native-firebase/auth';
-
 import firestore from '@react-native-firebase/firestore';
 
 const SignUp = ({ navigation }) => {
