@@ -1,8 +1,10 @@
 ![BrightCoders Logo](img/logo-bc.png)
 
 # Reservación de Vuelos
+[![Maintainability](https://api.codeclimate.com/v1/badges/03bebe1e504fa586afe5/maintainability)](https://codeclimate.com/github/Brightcoders-Bootcamps/kata-04-reservacion-de-vuelos-team-01-nov/maintainability)
 
 ![Cover](img/cover.jpg)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/03bebe1e504fa586afe5/test_coverage)](https://codeclimate.com/github/Brightcoders-Bootcamps/kata-04-reservacion-de-vuelos-team-01-nov/test_coverage)
 
 <span>Photo by <a href="https://unsplash.com/@by_syeoni?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Suhyeon Choi</a> on <a href="https://unsplash.com/s/photos/flight?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
