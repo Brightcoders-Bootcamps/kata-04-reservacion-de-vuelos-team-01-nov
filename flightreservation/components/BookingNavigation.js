@@ -13,7 +13,6 @@ const Stack = createStackNavigator();
 const BookingNavigation = ()=>
 {
   return (
-   
       <Stack.Navigator>
         <Stack.Screen name="BookingNow" options={{headerShown: false}} component={BookingNow}/> 
         <Stack.Screen name="BookingWill" options={{headerShown: false}} component={BookingWill}/>              
