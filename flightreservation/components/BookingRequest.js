@@ -22,6 +22,7 @@ const BookingRequest = ({route,navigation})=>
         .then(documentSnapshot => {            
             if (documentSnapshot.exists) {
                 var userData = documentSnapshot.data();
+                newData.id = userData.vuelos.length.toString(); 
                 userData.vuelos.push(newData);                
                 
                 firestore().collection('usersData').doc(auth().currentUser.uid)
