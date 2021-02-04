@@ -105,6 +105,7 @@ const SignUp = ({ navigation }) => {
                       .set({
                             vuelos:[]                          
                       })
+                      navigation.navigate('FlightsView');
                     })
                     .catch(error => {
                       if (error.code === 'auth/email-already-in-use') {
