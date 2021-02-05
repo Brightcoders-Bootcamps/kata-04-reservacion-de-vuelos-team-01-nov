@@ -5,6 +5,22 @@ import Checkbox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/AntDesign';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { GoogleSignin } from "@react-native-community/google-signin";
+
+GoogleSignin.configure({
+  webClientId: '408381473599-v409ai569v08to20ed68f2bktbasjv37.apps.googleusercontent.com',
+});
+
+async function onGoogleButtonPress() {
+  const { idToken } = await GoogleSignin.signIn();
+  console.log("GOOGLE SIGN IN", idToken);
+
+
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  console.log("Credential", googleCredential)
+
+  return auth().signInWithCredential(googleCredential);
+}
 
 const SignUp = ({ navigation }) => {
   const [firstNameInput, setFirstNameInput] = useState(false);
@@ -102,9 +118,9 @@ const SignUp = ({ navigation }) => {
                       console.log("ID usuario Logueado", auth().currentUser.uid)
 
                       firestore().collection('usersData').doc(auth().currentUser.uid)
-                      .set({
-                            vuelos:[]                          
-                      })
+                        .set({
+                          vuelos: []
+                        })
                       navigation.navigate('FlightsView');
                     })
                     .catch(error => {
@@ -128,6 +144,12 @@ const SignUp = ({ navigation }) => {
             <View>
               <View style={styles.shadow}>
                 <TouchableOpacity
+                  onPress={() => {
+                    onGoogleButtonPress()
+                      .then(() => console.log('LOGEADO'))
+                      .catch((error) => console.log(error))
+                  }
+                  }
                   style={styles.buttonEnabled}>
                   <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Image
